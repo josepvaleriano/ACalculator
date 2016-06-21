@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+/*Metodo principal de la calculadora*/
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
 
     private Boolean typeCalculator = true;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnNum8;
     private Button btnNum9;
 
+    /*Método de creación */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,12 +50,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    /*Se crea el metodo donde escucha los eventos*/
+    /*Método para canalizar los eventos*/
+
     @Override
     public void onClick(View view) {
         String n1 = number1.getText().toString();
         String n2 = number2.getText().toString();
-        boolean executeEcuals = false;
+        boolean executeEquals = false;
         switch (view.getId()){
             case R.id.btnDecBin:
                 typeCalculator= !typeCalculator;
@@ -68,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 btnNum7.setEnabled(typeCalculator);
                 btnNum8.setEnabled(typeCalculator);
                 btnNum9.setEnabled(typeCalculator);
+                btnPoint.setEnabled(typeCalculator);
+                btnMod.setEnabled(typeCalculator);
                 evaluateOperation = false;
                 addPoint = 0;
             break;
@@ -79,8 +84,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 addPoint = 0;
                 break;
             case R.id.btnEquals:
-                executeEcuals = true;
-                evaluateOperation(executeEcuals, n1, n2);
+                executeEquals = true;
+                evaluateOperation(executeEquals, n1, n2);
                 evaluateOperation = true;
                 break;
             case R.id.btnDiv:
@@ -90,12 +95,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     typeOperation = "/";
                     operator.setText(typeOperation);
                     addPoint=0;
+                    evaluateOperation = false;
                 }
                 else if (n1.trim().length()!=0 && n2.trim().length()!=0 && !n2.equals(".") ) {
-                    executeEcuals = false;
-                    evaluateOperation(executeEcuals, n1, n2);
+                    executeEquals = false;
+                    evaluateOperation(executeEquals, n1, n2);
                     typeOperation = "/";
                     operator.setText(typeOperation);
+                    addPoint=0;
+                }else if (n1.trim().length()!=0 && n2.trim().length()==0  ) {
+                    typeOperation = "/";
+                    operator.setText(typeOperation);
+                    addPoint=0;
                 }
                 break;
             case R.id.btnMul:
@@ -105,12 +116,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     typeOperation = "x";
                     operator.setText(typeOperation);
                     addPoint=0;
+                    evaluateOperation = false;
                 }
                 else if (n1.trim().length()!=0 && n2.trim().length()!=0 && !n2.equals(".")  ) {
-                    executeEcuals = false;
-                    evaluateOperation(executeEcuals, n1, n2);
+                    executeEquals = false;
+                    evaluateOperation(executeEquals, n1, n2);
                     typeOperation = "x";
                     operator.setText(typeOperation);
+                    addPoint=0;
+                }else if (n1.trim().length()!=0 && n2.trim().length()==0  ) {
+                    typeOperation = "x";
+                    operator.setText(typeOperation);
+                    addPoint=0;
                 }
                 break;
             case R.id.btnRes:
@@ -120,12 +137,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     typeOperation = "-";
                     operator.setText(typeOperation);
                     addPoint=0;
+                    evaluateOperation = false;
                 }
                 else if (n1.trim().length()!=0 && n2.trim().length()!=0 && !n2.equals(".") ) {
-                    executeEcuals = false;
-                    evaluateOperation(executeEcuals, n1, n2);
+                    executeEquals = false;
+                    evaluateOperation(executeEquals, n1, n2);
                     typeOperation = "-";
                     operator.setText(typeOperation);
+                    addPoint=0;
+                }
+                else if (n1.trim().length()!=0 && n2.trim().length()==0  ) {
+                    typeOperation = "-";
+                    operator.setText(typeOperation);
+                    addPoint=0;
                 }
                 break;
             case R.id.btnSum:
@@ -135,14 +159,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     typeOperation = "+";
                     operator.setText(typeOperation);
                     addPoint=0;
+                    evaluateOperation = false;
                 }
                 else if (n1.trim().length()!=0 && n2.trim().length()!=0 && !n2.equals(".") ) {
-                    executeEcuals = false;
-                    evaluateOperation(executeEcuals, n1, n2);
+                    executeEquals = false;
+                    evaluateOperation(executeEquals, n1, n2);
                     typeOperation = "+";
                     operator.setText(typeOperation);
+                    addPoint=0;
+                }
+                else if (n1.trim().length()!=0 && n2.trim().length()==0  ) {
+                    typeOperation = "+";
+                    operator.setText(typeOperation);
+                    addPoint=0;
                 }
                 break;
+            case R.id.btnMod:
+                if (n1.trim().length()==0 && n2.trim().length()!=0 && !n2.equals(".")) {
+                    number1.setText("" + n2);
+                    number2.setText("");
+                    typeOperation = "%";
+                    operator.setText(typeOperation);
+                    addPoint=0;
+                    evaluateOperation = false;
+                }
+                else if (n1.trim().length()!=0 && n2.trim().length()!=0 && !n2.equals(".") ) {
+                    executeEquals = false;
+                    evaluateOperation(executeEquals, n1, n2);
+                    typeOperation = "%";
+                    operator.setText(typeOperation);
+                    addPoint=0;
+                }
+                else if (n1.trim().length()!=0 && n2.trim().length()==0  ) {
+                    typeOperation = "%";
+                    operator.setText(typeOperation);
+                    addPoint=0;
+                }
+
+                break;
+
             case R.id.btnPoint:
                 if (addPoint==0) {
                     number2.setText(n2 + ".");
@@ -150,103 +205,183 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.btn9:
-                n2 = (evaluateOperation)?"":n2;
+                if (evaluateOperation) {
+                    n2 = "";
+                    evaluateOperation = !evaluateOperation;
+                }
                 number2.setText(n2 +"9");
                 break;
             case R.id.btn8:
-                n2 = (evaluateOperation)?"":n2;
+                if (evaluateOperation) {
+                    n2 = "";
+                    evaluateOperation = !evaluateOperation;
+                }
                 number2.setText(n2 +"8");
                 break;
             case R.id.btn7:
-                n2 = (evaluateOperation)?"":n2;
-                number2.setText(n2 +"9");
+                if (evaluateOperation) {
+                    n2 = "";
+                    evaluateOperation = !evaluateOperation;
+                }
+                number2.setText(n2 +"7");
                 break;
             case R.id.btn6:
-                n2 = (evaluateOperation)?"":n2;
+                if (evaluateOperation) {
+                    n2 = "";
+                    evaluateOperation = !evaluateOperation;
+                }
                 number2.setText(n2 +"6");
                 break;
             case R.id.btn5:
-                n2 = (evaluateOperation)?"":n2;
+                if (evaluateOperation) {
+                    n2 = "";
+                    evaluateOperation = !evaluateOperation;
+                }
                 number2.setText(n2 +"5");
                 break;
             case R.id.btn4:
-                n2 = (evaluateOperation)?"":n2;
+                if (evaluateOperation) {
+                    n2 = "";
+                    evaluateOperation = !evaluateOperation;
+                }
                 number2.setText(n2 +"4");
                 break;
             case R.id.btn3:
-                n2 = (evaluateOperation)?"":n2;
+                if (evaluateOperation) {
+                    n2 = "";
+                    evaluateOperation = !evaluateOperation;
+                }
                 number2.setText(n2 +"3");
                 break;
             case R.id.btn2:
-                n2 = (evaluateOperation)?"":n2;
+                if (evaluateOperation) {
+                    n2 = "";
+                    evaluateOperation = !evaluateOperation;
+                }
                 number2.setText(n2 +"2");
                 break;
             case R.id.btn1:
-                n2 = (evaluateOperation)?"":n2;
+                if (evaluateOperation) {
+                    n2 = "";
+                    evaluateOperation = !evaluateOperation;
+                }
                 number2.setText(n2 +"1");
                 break;
             case R.id.btn0:
-                n2 = (evaluateOperation)?"":n2;
+                if (evaluateOperation) {
+                    n2 = "";
+                    evaluateOperation = !evaluateOperation;
+                }
                 number2.setText(n2 +"0");
                 break;
         }
-
     }
 
-    private void evaluateOperation(boolean executeEcuals, String n1, String n2) {
+
+    /*Método privado encargado de realizar las operaciones @param executeEquals cuando se presiona el igual, también incluye las operaciones binarias
+    * @String n1 valor de la celda 1
+    * @String n2 valor de la celda 2
+    * */
+    private void evaluateOperation(boolean executeEquals, String n1, String n2) {
+        String operacion ="" ;
         switch (typeOperation){
             case "/":
+                float isZero = Float.parseFloat(n2);
                 if (!TextUtils.isEmpty(n2) && !TextUtils.isEmpty(n1) ){
-                    float ope = Float.parseFloat(n1) / Float.parseFloat(n2);
-                    if (executeEcuals) {
-                        number2.setText("" + ope);
+                    if(!typeCalculator && isZero!=0 ) {
+                        int r = Integer.parseInt(n1, 2) / Integer.parseInt(n2, 2);
+                        operacion = Integer.toString(r,2);
+                    }
+                    else if(typeCalculator && isZero!=0 ) {
+                        operacion = (Float.parseFloat(n1) / Float.parseFloat(n2))+"" ;
+                    }
+                    if (executeEquals) {
+                        number2.setText("" + operacion);
                         number1.setText("");
                         operator.setText("");
                     }
                     else{
-                        number1.setText("" + ope);
+                        number1.setText("" + operacion);
                         number2.setText("");
                     }
                 }
                 break;
             case "x":
                 if (!TextUtils.isEmpty(n2) && !TextUtils.isEmpty(n1) ){
-                    float ope = Float.parseFloat(n1) * Float.parseFloat(n2);
-                    if (executeEcuals) {
-                        number2.setText("" + ope);
+                    if(!typeCalculator) {
+                        int r = Integer.parseInt(n1, 2) * Integer.parseInt(n2, 2);
+                        operacion = Integer.toString(r,2);
+                    }
+                    else {
+                        operacion = (Float.parseFloat(n1) * Float.parseFloat(n2))+"" ;
+                    }
+                    if (executeEquals) {
+                        number2.setText("" + operacion);
                         number1.setText("");
                         operator.setText("");
                     }
                     else{
-                        number1.setText("" + ope);
+                        number1.setText("" + operacion);
                         number2.setText("");
                     }
                 }
                 break;
             case "+":
                 if (!TextUtils.isEmpty(n2) && !TextUtils.isEmpty(n1) ){
-                    float ope = Float.parseFloat(n1) + Float.parseFloat(n2);
-                    if (executeEcuals) {
-                        number2.setText("" + ope);
+                    if(!typeCalculator) {
+                        int r = Integer.parseInt(n1, 2) + Integer.parseInt(n2, 2);
+                        operacion = Integer.toString(r,2);
+                    }
+                    else {
+                        operacion = (Float.parseFloat(n1) + Float.parseFloat(n2))+"" ;
+                    }
+                    if (executeEquals) {
+                        number2.setText("" + operacion);
                         number1.setText("");
                         operator.setText("");
                     }
                     else{
-                        number1.setText("" + ope);
+                        number1.setText("" + operacion);
                         number2.setText("");
                     }
                 }
                 break;
             case "-":
                 if (!TextUtils.isEmpty(n2) && !TextUtils.isEmpty(n1) ){
-                    float ope = Float.parseFloat(n1) - Float.parseFloat(n2);
-                    if (executeEcuals) {
-                        number2.setText("" + ope);
+                    if(!typeCalculator) {
+                        int r = Integer.parseInt(n1, 2) - Integer.parseInt(n2, 2);
+                        operacion = Integer.toString(r,2);
+                    }
+                    else {
+                        operacion = (Float.parseFloat(n1) - Float.parseFloat(n2))+"" ;
+                    }
+                    if (executeEquals) {
+                        number2.setText("" + operacion);
                         number1.setText("");
                         operator.setText("");
                     }
                     else{
-                        number1.setText("" + ope);
+                        number1.setText("" + operacion);
+                        number2.setText("");
+                    }
+                }
+                break;
+            case "%":
+                if (!TextUtils.isEmpty(n2) && !TextUtils.isEmpty(n1) ){
+                    if(!typeCalculator) {
+                        int r = Integer.parseInt(n1, 2) % Integer.parseInt(n2, 2);
+                        operacion = Integer.toString(r,2);
+                    }
+                    else {
+                        operacion = (Float.parseFloat(n1) % Float.parseFloat(n2))+"" ;
+                    }
+                    if (executeEquals) {
+                        number2.setText("" + operacion);
+                        number1.setText("");
+                        operator.setText("");
+                    }
+                    else{
+                        number1.setText("" + operacion);
                         number2.setText("");
                     }
                 }
@@ -255,7 +390,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    /*Metodo para buscar los elementos*/
+    /*Metodo para buscar los elementos en la vista*/
     private void findView(){
         number1 = (EditText) findViewById(R.id.txtNumber1);
         operator = (EditText) findViewById(R.id.txtOperator);
@@ -266,6 +401,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnMul = (Button) findViewById(R.id.btnMul);
         btnRes = (Button) findViewById(R.id.btnRes);
         btnSum = (Button) findViewById(R.id.btnSum);
+        btnMod = (Button) findViewById(R.id.btnMod);
         btnPoint = (Button) findViewById(R.id.btnPoint);
         btnEquals = (Button) findViewById(R.id.btnEquals);
         btnNum0  = (Button) findViewById(R.id.btn0);
@@ -291,6 +427,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btnSum).setOnClickListener(this);
         findViewById(R.id.btnPoint).setOnClickListener(this);
         findViewById(R.id.btnEquals).setOnClickListener(this);
+        findViewById(R.id.btnMod).setOnClickListener(this);
         findViewById(R.id.btn0).setOnClickListener(this);
         findViewById(R.id.btn1).setOnClickListener(this);
         findViewById(R.id.btn2).setOnClickListener(this);
