@@ -58,224 +58,226 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String n1 = number1.getText().toString();
         String n2 = number2.getText().toString();
         boolean executeEquals = false;
-        switch (view.getId()){
-            case R.id.btnDecBin:
-                typeCalculator= !typeCalculator;
-                number1.setText("");
-                number2.setText("");
-                operator.setText("");
-                btnNum2.setEnabled(typeCalculator);
-                btnNum3.setEnabled(typeCalculator);
-                btnNum4.setEnabled(typeCalculator);
-                btnNum5.setEnabled(typeCalculator);
-                btnNum6.setEnabled(typeCalculator);
-                btnNum7.setEnabled(typeCalculator);
-                btnNum8.setEnabled(typeCalculator);
-                btnNum9.setEnabled(typeCalculator);
-                btnPoint.setEnabled(typeCalculator);
-                btnMod.setEnabled(typeCalculator);
-                evaluateOperation = false;
-                addPoint = 0;
-            break;
-            case R.id.btnClear:
-                number1.setText("");
-                operator.setText("");
-                number2.setText("");
-                evaluateOperation = false;
-                addPoint = 0;
-                break;
-            case R.id.btnEquals:
-                executeEquals = true;
-                evaluateOperation(executeEquals, n1, n2);
-                evaluateOperation = true;
-                break;
-            case R.id.btnDiv:
-                if (n1.trim().length()==0 && n2.trim().length()!=0 && !n2.equals(".")) {
-                    number1.setText("" + n2);
+        try {
+            switch (view.getId()) {
+                case R.id.btnDecBin:
+                    typeCalculator = !typeCalculator;
+                    number1.setText("");
                     number2.setText("");
-                    typeOperation = "/";
-                    operator.setText(typeOperation);
-                    addPoint=0;
+                    operator.setText("");
+                    btnNum2.setEnabled(typeCalculator);
+                    btnNum3.setEnabled(typeCalculator);
+                    btnNum4.setEnabled(typeCalculator);
+                    btnNum5.setEnabled(typeCalculator);
+                    btnNum6.setEnabled(typeCalculator);
+                    btnNum7.setEnabled(typeCalculator);
+                    btnNum8.setEnabled(typeCalculator);
+                    btnNum9.setEnabled(typeCalculator);
+                    btnPoint.setEnabled(typeCalculator);
+                    btnMod.setEnabled(typeCalculator);
                     evaluateOperation = false;
-                }
-                else if (n1.trim().length()!=0 && n2.trim().length()!=0 && !n2.equals(".") ) {
-                    executeEquals = false;
-                    evaluateOperation(executeEquals, n1, n2);
-                    typeOperation = "/";
-                    operator.setText(typeOperation);
-                    addPoint=0;
-                }else if (n1.trim().length()!=0 && n2.trim().length()==0  ) {
-                    typeOperation = "/";
-                    operator.setText(typeOperation);
-                    addPoint=0;
-                }
-                break;
-            case R.id.btnMul:
-                if (n1.trim().length()==0 && n2.trim().length()!=0 && !n2.equals(".")) {
-                    number1.setText("" + n2);
+                    addPoint = 0;
+                    break;
+                case R.id.btnClear:
+                    number1.setText("");
+                    operator.setText("");
                     number2.setText("");
-                    typeOperation = "x";
-                    operator.setText(typeOperation);
-                    addPoint=0;
                     evaluateOperation = false;
-                }
-                else if (n1.trim().length()!=0 && n2.trim().length()!=0 && !n2.equals(".")  ) {
-                    executeEquals = false;
+                    addPoint = 0;
+                    break;
+                case R.id.btnEquals:
+                    executeEquals = true;
                     evaluateOperation(executeEquals, n1, n2);
-                    typeOperation = "x";
-                    operator.setText(typeOperation);
-                    addPoint=0;
-                }else if (n1.trim().length()!=0 && n2.trim().length()==0  ) {
-                    typeOperation = "x";
-                    operator.setText(typeOperation);
-                    addPoint=0;
-                }
-                break;
-            case R.id.btnRes:
-                if (n1.trim().length()==0 && n2.trim().length()!=0 && !n2.equals(".")) {
-                    number1.setText("" + n2);
-                    number2.setText("");
-                    typeOperation = "-";
-                    operator.setText(typeOperation);
-                    addPoint=0;
-                    evaluateOperation = false;
-                }
-                else if (n1.trim().length()!=0 && n2.trim().length()!=0 && !n2.equals(".") ) {
-                    executeEquals = false;
-                    evaluateOperation(executeEquals, n1, n2);
-                    typeOperation = "-";
-                    operator.setText(typeOperation);
-                    addPoint=0;
-                }
-                else if (n1.trim().length()!=0 && n2.trim().length()==0  ) {
-                    typeOperation = "-";
-                    operator.setText(typeOperation);
-                    addPoint=0;
-                }
-                break;
-            case R.id.btnSum:
-                if (n1.trim().length()==0 && n2.trim().length()!=0 && !n2.equals(".")) {
-                    number1.setText("" + n2);
-                    number2.setText("");
-                    typeOperation = "+";
-                    operator.setText(typeOperation);
-                    addPoint=0;
-                    evaluateOperation = false;
-                }
-                else if (n1.trim().length()!=0 && n2.trim().length()!=0 && !n2.equals(".") ) {
-                    executeEquals = false;
-                    evaluateOperation(executeEquals, n1, n2);
-                    typeOperation = "+";
-                    operator.setText(typeOperation);
-                    addPoint=0;
-                }
-                else if (n1.trim().length()!=0 && n2.trim().length()==0  ) {
-                    typeOperation = "+";
-                    operator.setText(typeOperation);
-                    addPoint=0;
-                }
-                break;
-            case R.id.btnMod:
-                if (n1.trim().length()==0 && n2.trim().length()!=0 && !n2.equals(".")) {
-                    number1.setText("" + n2);
-                    number2.setText("");
-                    typeOperation = "%";
-                    operator.setText(typeOperation);
-                    addPoint=0;
-                    evaluateOperation = false;
-                }
-                else if (n1.trim().length()!=0 && n2.trim().length()!=0 && !n2.equals(".") ) {
-                    executeEquals = false;
-                    evaluateOperation(executeEquals, n1, n2);
-                    typeOperation = "%";
-                    operator.setText(typeOperation);
-                    addPoint=0;
-                }
-                else if (n1.trim().length()!=0 && n2.trim().length()==0  ) {
-                    typeOperation = "%";
-                    operator.setText(typeOperation);
-                    addPoint=0;
-                }
+                    evaluateOperation = true;
+                    break;
+                case R.id.btnDiv:
+                    if (n1.trim().length() == 0 && n2.trim().length() != 0 && !n2.equals(".")) {
+                        number1.setText("" + n2);
+                        number2.setText("");
+                        typeOperation = "/";
+                        operator.setText(typeOperation);
+                        addPoint = 0;
+                        evaluateOperation = false;
+                    } else if (n1.trim().length() != 0 && n2.trim().length() != 0 && !n2.equals(".")) {
+                        executeEquals = false;
+                        evaluateOperation(executeEquals, n1, n2);
+                        typeOperation = "/";
+                        operator.setText(typeOperation);
+                        addPoint = 0;
+                    } else if (n1.trim().length() != 0 && n2.trim().length() == 0) {
+                        typeOperation = "/";
+                        operator.setText(typeOperation);
+                        addPoint = 0;
+                    }
+                    break;
+                case R.id.btnMul:
+                    if (n1.trim().length() == 0 && n2.trim().length() != 0 && !n2.equals(".")) {
+                        number1.setText("" + n2);
+                        number2.setText("");
+                        typeOperation = "x";
+                        operator.setText(typeOperation);
+                        addPoint = 0;
+                        evaluateOperation = false;
+                    } else if (n1.trim().length() != 0 && n2.trim().length() != 0 && !n2.equals(".")) {
+                        executeEquals = false;
+                        evaluateOperation(executeEquals, n1, n2);
+                        typeOperation = "x";
+                        operator.setText(typeOperation);
+                        addPoint = 0;
+                    } else if (n1.trim().length() != 0 && n2.trim().length() == 0) {
+                        typeOperation = "x";
+                        operator.setText(typeOperation);
+                        addPoint = 0;
+                    }
+                    break;
+                case R.id.btnRes:
+                    if (n1.trim().length() == 0 && n2.trim().length() != 0 && !n2.equals(".")) {
+                        number1.setText("" + n2);
+                        number2.setText("");
+                        typeOperation = "-";
+                        operator.setText(typeOperation);
+                        addPoint = 0;
+                        evaluateOperation = false;
+                    } else if (n1.trim().length() != 0 && n2.trim().length() != 0 && !n2.equals(".")) {
+                        executeEquals = false;
+                        evaluateOperation(executeEquals, n1, n2);
+                        typeOperation = "-";
+                        operator.setText(typeOperation);
+                        addPoint = 0;
+                    } else if (n1.trim().length() != 0 && n2.trim().length() == 0) {
+                        typeOperation = "-";
+                        operator.setText(typeOperation);
+                        addPoint = 0;
+                    }
+                    break;
+                case R.id.btnSum:
+                    if (n1.trim().length() == 0 && n2.trim().length() != 0 && !n2.equals(".")) {
+                        number1.setText("" + n2);
+                        number2.setText("");
+                        typeOperation = "+";
+                        operator.setText(typeOperation);
+                        addPoint = 0;
+                        evaluateOperation = false;
+                    } else if (n1.trim().length() != 0 && n2.trim().length() != 0 && !n2.equals(".")) {
+                        executeEquals = false;
+                        evaluateOperation(executeEquals, n1, n2);
+                        typeOperation = "+";
+                        operator.setText(typeOperation);
+                        addPoint = 0;
+                    } else if (n1.trim().length() != 0 && n2.trim().length() == 0) {
+                        typeOperation = "+";
+                        operator.setText(typeOperation);
+                        addPoint = 0;
+                    }
+                    break;
+                case R.id.btnMod:
+                    if (n1.trim().length() == 0 && n2.trim().length() != 0 && !n2.equals(".")) {
+                        number1.setText("" + n2);
+                        number2.setText("");
+                        typeOperation = "%";
+                        operator.setText(typeOperation);
+                        addPoint = 0;
+                        evaluateOperation = false;
+                    } else if (n1.trim().length() != 0 && n2.trim().length() != 0 && !n2.equals(".")) {
+                        executeEquals = false;
+                        evaluateOperation(executeEquals, n1, n2);
+                        typeOperation = "%";
+                        operator.setText(typeOperation);
+                        addPoint = 0;
+                    } else if (n1.trim().length() != 0 && n2.trim().length() == 0) {
+                        typeOperation = "%";
+                        operator.setText(typeOperation);
+                        addPoint = 0;
+                    }
 
-                break;
+                    break;
 
-            case R.id.btnPoint:
-                if (addPoint==0) {
-                    number2.setText(n2 + ".");
-                    addPoint++;
-                }
-                break;
-            case R.id.btn9:
-                if (evaluateOperation) {
-                    n2 = "";
-                    evaluateOperation = !evaluateOperation;
-                }
-                number2.setText(n2 +"9");
-                break;
-            case R.id.btn8:
-                if (evaluateOperation) {
-                    n2 = "";
-                    evaluateOperation = !evaluateOperation;
-                }
-                number2.setText(n2 +"8");
-                break;
-            case R.id.btn7:
-                if (evaluateOperation) {
-                    n2 = "";
-                    evaluateOperation = !evaluateOperation;
-                }
-                number2.setText(n2 +"7");
-                break;
-            case R.id.btn6:
-                if (evaluateOperation) {
-                    n2 = "";
-                    evaluateOperation = !evaluateOperation;
-                }
-                number2.setText(n2 +"6");
-                break;
-            case R.id.btn5:
-                if (evaluateOperation) {
-                    n2 = "";
-                    evaluateOperation = !evaluateOperation;
-                }
-                number2.setText(n2 +"5");
-                break;
-            case R.id.btn4:
-                if (evaluateOperation) {
-                    n2 = "";
-                    evaluateOperation = !evaluateOperation;
-                }
-                number2.setText(n2 +"4");
-                break;
-            case R.id.btn3:
-                if (evaluateOperation) {
-                    n2 = "";
-                    evaluateOperation = !evaluateOperation;
-                }
-                number2.setText(n2 +"3");
-                break;
-            case R.id.btn2:
-                if (evaluateOperation) {
-                    n2 = "";
-                    evaluateOperation = !evaluateOperation;
-                }
-                number2.setText(n2 +"2");
-                break;
-            case R.id.btn1:
-                if (evaluateOperation) {
-                    n2 = "";
-                    evaluateOperation = !evaluateOperation;
-                }
-                number2.setText(n2 +"1");
-                break;
-            case R.id.btn0:
-                if (evaluateOperation) {
-                    n2 = "";
-                    evaluateOperation = !evaluateOperation;
-                }
-                number2.setText(n2 +"0");
-                break;
+                case R.id.btnPoint:
+                    if (evaluateOperation) {
+                        n2 = "";
+                        evaluateOperation = !evaluateOperation;
+                    }
+                    if (addPoint == 0) {
+                        number2.setText(n2 + ".");
+                        addPoint++;
+                    }
+                    break;
+                case R.id.btn9:
+                    if (evaluateOperation) {
+                        n2 = "";
+                        evaluateOperation = !evaluateOperation;
+                    }
+                    number2.setText(n2 + "9");
+                    break;
+                case R.id.btn8:
+                    if (evaluateOperation) {
+                        n2 = "";
+                        evaluateOperation = !evaluateOperation;
+                    }
+                    number2.setText(n2 + "8");
+                    break;
+                case R.id.btn7:
+                    if (evaluateOperation) {
+                        n2 = "";
+                        evaluateOperation = !evaluateOperation;
+                    }
+                    number2.setText(n2 + "7");
+                    break;
+                case R.id.btn6:
+                    if (evaluateOperation) {
+                        n2 = "";
+                        evaluateOperation = !evaluateOperation;
+                    }
+                    number2.setText(n2 + "6");
+                    break;
+                case R.id.btn5:
+                    if (evaluateOperation) {
+                        n2 = "";
+                        evaluateOperation = !evaluateOperation;
+                    }
+                    number2.setText(n2 + "5");
+                    break;
+                case R.id.btn4:
+                    if (evaluateOperation) {
+                        n2 = "";
+                        evaluateOperation = !evaluateOperation;
+                    }
+                    number2.setText(n2 + "4");
+                    break;
+                case R.id.btn3:
+                    if (evaluateOperation) {
+                        n2 = "";
+                        evaluateOperation = !evaluateOperation;
+                    }
+                    number2.setText(n2 + "3");
+                    break;
+                case R.id.btn2:
+                    if (evaluateOperation) {
+                        n2 = "";
+                        evaluateOperation = !evaluateOperation;
+                    }
+                    number2.setText(n2 + "2");
+                    break;
+                case R.id.btn1:
+                    if (evaluateOperation) {
+                        n2 = "";
+                        evaluateOperation = !evaluateOperation;
+                    }
+                    number2.setText(n2 + "1");
+                    break;
+                case R.id.btn0:
+                    if (evaluateOperation) {
+                        n2 = "";
+                        evaluateOperation = !evaluateOperation;
+                    }
+                    number2.setText(n2 + "0");
+                    break;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(),R.string.error_operation,Toast.LENGTH_SHORT).show();
         }
+
     }
 
 
@@ -370,14 +372,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case "%":
+                isZero = Float.parseFloat(n2);
                 if (!TextUtils.isEmpty(n2) && !TextUtils.isEmpty(n1) ){
-                    if(!typeCalculator) {
+                    if(!typeCalculator && isZero!=0 ) {
                         int r = Integer.parseInt(n1, 2) % Integer.parseInt(n2, 2);
                         operacion = Integer.toString(r,2);
                     }
-                    else {
+                    else if(typeCalculator && isZero!=0 ) {
                         operacion = (Float.parseFloat(n1) % Float.parseFloat(n2))+"" ;
                     }
+                    else
+                        Toast.makeText(getApplicationContext(),R.string.error_operation,Toast.LENGTH_SHORT).show();
                     if (executeEquals) {
                         number2.setText("" + operacion);
                         number1.setText("");
