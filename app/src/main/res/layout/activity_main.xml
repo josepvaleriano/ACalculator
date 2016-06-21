@@ -1,279 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="test.valeriano.mx.acalculator.MainActivity">
 
 
-    <FrameLayout
+    <LinearLayout
+        android:orientation="vertical"
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayoutShow">
+        <EditText
+            android:text=""
+            android:textSize="@dimen/txtCalculator"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtNumber1"
+            android:layout_gravity="right"
+            android:inputType="numberDecimal"
+            android:focusableInTouchMode="false" />
+        <EditText
+            android:text=""
+            android:textSize="@dimen/txtCalculator"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtOperator"
+            android:focusableInTouchMode="false" />
+        <EditText
+            android:text=""
+            android:textSize="@dimen/txtCalculator"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtNumber2"
+            android:layout_gravity="right"
+            android:inputType="numberDecimal"
+            android:focusableInTouchMode="false" />
+    </LinearLayout>
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_alignParentTop="true"
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/line1">
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:text="B/D"
+            android:id="@+id/btnDecBin"
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/linearLayout">
-            <TextView
-                android:layout_weight=".10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hello World!"
-                android:id="@+id/textView" />
-            <Button
-                android:layout_weight=".10"
-                android:textAllCaps="false"
-                android:text="Login"
-                android:id="@+id/activity_main_login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <Button
-                android:layout_weight=".10"
-                android:textAllCaps="false"
-                android:text="Login"
-                android:id="@+id/activity_main_login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_alignParentTop="true"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:text="C"
+            android:id="@+id/btnClear"
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/linearLayout">
-            <TextView
-                android:layout_weight=".10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hello World!"
-                android:id="@+id/textView" />
-            <Button
-                android:layout_weight=".10"
-                android:textAllCaps="false"
-                android:text="Login"
-                android:id="@+id/activity_main_login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <Button
-                android:layout_weight=".10"
-                android:textAllCaps="false"
-                android:text="Login"
-                android:id="@+id/activity_main_login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_alignParentTop="true"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:text="/"
+            android:id="@+id/btnDiv"
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/linearLayout">
-            <TextView
-                android:layout_weight=".10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hello World!"
-                android:id="@+id/textView" />
-            <Button
-                android:layout_weight=".10"
-                android:textAllCaps="false"
-                android:text="Login"
-                android:id="@+id/activity_main_login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <Button
-                android:layout_weight=".10"
-                android:textAllCaps="false"
-                android:text="Login"
-                android:id="@+id/activity_main_login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_alignParentTop="true"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:text="x"
+            android:id="@+id/btnMul"
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/linearLayout">
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:text="Bin/Dec"
-                android:id="@+id/btnType"
-                android:layout_column="0"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+            android:textSize="@dimen/abc_text_size_medium_material" />
+    </LinearLayout>
 
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:text="C"
-                android:id="@+id/btnClear"
-                android:layout_column="1"
-                android:layout_width="wrap_content" />
 
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:text="/"
-                android:id="@+id/btnDiv"
-                android:layout_column="2" />
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:text="/"
-                android:id="@+id/btnMul"
-                android:layout_column="3" />
+    <LinearLayout
+        android:orientation="horizontal"
 
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/line2">
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:text="7"
+            android:id="@+id/btn7"
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/linearLayout">
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:text="7"
-                android:id="@+id/btn7"
-                android:layout_column="0" />
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:text="8"
-                android:id="@+id/btn8"
-                android:layout_column="1" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="9"
-                android:id="@+id/btn9"
-                android:layout_column="2" />
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:text="New Button"
-                android:id="@+id/btnRes"
-                android:layout_column="3" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_alignParentTop="true"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:text="8"
+            android:id="@+id/btn8"
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/linearLayout">
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:text="4"
-                android:id="@+id/btn4"
-                android:layout_column="0" />
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:text="5"
-                android:id="@+id/btn5"
-                android:layout_column="1" />
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:text="6"
-                android:id="@+id/btn6"
-                android:layout_column="2" />
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:text="+"
-                android:id="@+id/btnSum"
-                android:layout_column="3" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_alignParentTop="true"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/linearLayout">
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:text="1"
-                android:id="@+id/button7"
-                android:layout_column="0" />
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:text="New Button"
-                android:id="@+id/button9"
-                android:layout_column="1" />
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:text="New Button"
-                android:id="@+id/button12"
-                android:layout_column="2" />
-
-        </LinearLayout>
-        <TableLayout
-
+            android:text="9"
+            android:id="@+id/btn9"
+            android:layout_weight="1"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:text="-"
+            android:id="@+id/btnRes"
+            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/linearLayout"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-            <TableRow
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+    </LinearLayout>
 
 
-            </TableRow>
+    <LinearLayout
+        android:orientation="horizontal"
 
-            <LinearLayout>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/line3">
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:text="4"
+            android:id="@+id/btn4"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:text="5"
+            android:id="@+id/btn5"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:text="6"
+            android:id="@+id/btn6"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:text="+"
+            android:id="@+id/btnSum"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+    </LinearLayout>
 
-            </LinearLayout>
-            <TableRow
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
 
-                <Button
-                    style="?android:attr/buttonStyleSmall"
-                    android:text="1"
-                    android:id="@+id/button7"
-                    android:layout_column="0" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/line4">
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:text="1"
+            android:id="@+id/btn1"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/abc_text_size_medium_material" />
 
-                <Button
-                    style="?android:attr/buttonStyleSmall"
-                    android:text="New Button"
-                    android:id="@+id/button9"
-                    android:layout_column="1" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:text="2"
+            android:id="@+id/btn2"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/abc_text_size_medium_material" />
 
-                <Button
-                    style="?android:attr/buttonStyleSmall"
-                    android:text="New Button"
-                    android:id="@+id/button12"
-                    android:layout_column="2" />
-            </TableRow>
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:text="3"
+            android:id="@+id/btn3"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/abc_text_size_medium_material" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:text="."
+            android:id="@+id/btnPoint"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+    </LinearLayout>
 
-            </TableRow>
-        </TableLayout>
+    <LinearLayout
+        android:orientation="horizontal"
 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/line5">
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:text="Mod"
+            android:id="@+id/btnMod"
+            android:layout_weight="0.20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:text="0"
+            android:id="@+id/btn0"
+            android:layout_weight="0.20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:text="="
+            android:id="@+id/btnEquals"
+            android:layout_weight="0.60"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/abc_text_size_medium_material" />
 
-    </FrameLayout>
-</RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>
