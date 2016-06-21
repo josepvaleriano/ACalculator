@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /*Metodo principal de la calculadora*/
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
@@ -295,6 +296,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     else if(typeCalculator && isZero!=0 ) {
                         operacion = (Float.parseFloat(n1) / Float.parseFloat(n2))+"" ;
                     }
+                    else
+                        Toast.makeText(getApplicationContext(),R.string.error_operation,Toast.LENGTH_SHORT).show();
                     if (executeEquals) {
                         number2.setText("" + operacion);
                         number1.setText("");
